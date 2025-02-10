@@ -9,15 +9,18 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# Token của bot
-TOKEN = "7554983188:AAE1VbqSBBVilW8wsJYC-LZEn1rmORE1Rqo"  # Thay YOUR_BOT_TOKEN bằng token của bot
+# Token của bot (đã được cập nhật)
+TOKEN = "7554983188:AAE1VbqSBBVilW8wsJYC-LZEn1rmORE1Rqo"
 
-# ID của nhóm
-GROUP_CHAT_ID = -1002307642304  # Thay bằng ID nhóm của bạn
+# ID của nhóm (đã được cập nhật)
+GROUP_CHAT_ID = -1002307642304
 
 # Hàm gửi tin nhắn đến nhóm
 def send_to_group(context: CallbackContext, message: str) -> None:
-    context.bot.send_message(chat_id=GROUP_CHAT_ID, text=message)
+    try:
+        context.bot.send_message(chat_id=GROUP_CHAT_ID, text=message)
+    except Exception as e:
+        logger.error(f"Failed to send message to group: {e}")
 
 # Hàm xử lý lệnh /lag
 def lag_command(update: Update, context: CallbackContext) -> None:
